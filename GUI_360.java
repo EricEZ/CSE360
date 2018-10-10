@@ -4,9 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-/*import javax.swing.JPanel;
+/*import javax.swing.JPanel; 				Not needed imports
 import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.ColumnSpec; 
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 */
