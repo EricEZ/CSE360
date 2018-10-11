@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.*;
 public class Node
 {
+	
     Scanner kb = new Scanner(System.in);
     private String activity ="";
     private int duration = 0;
@@ -41,18 +42,19 @@ public class Node
      */
     public Node(String activity, int duration, String Predecessor)
     {
-        System.out.println("What is the name of this activity? \n");
-        activity = kb.nextLine();
+       // System.out.println("What is the name of this activity? \n");
+       // activity = kb.nextLine();
         this.activity = activity;
 
-        System.out.println("What is the predecessor to this activity? \n");
-        predecessor = kb.nextLine();  
+       // System.out.println("What is the predecessor to this activity? \n");
+       // predecessor = kb.nextLine();  
         this.predecessor = predecessor;   
 
+       
         try
         {
-            System.out.println("What is the duration of this activity? \n");
-            duration = kb.nextInt();
+            //System.out.println("What is the duration of this activity? \n");
+           // duration = kb.nextInt();
             this.duration = duration;
         }
         catch (NumberFormatException a)
@@ -66,17 +68,17 @@ public class Node
      *  Im not really sure if we will need the setter methods but just incase.
      *  Getter methods will be used to retrieve the data.
      */
-    public void setActivity()
+    public void setActivity(String activity)
     {
         this.activity = activity;
     }
 
-    public void setDuration()
+    public void setDuration(int duration)
     {
         this.duration = duration;
     }  
 
-    public void setPredecessor()
+    public void setPredecessor(String predecessor)
     {
         this.predecessor = predecessor;
     } 
@@ -95,6 +97,12 @@ public class Node
     {
         return predecessor;
     }        
+    
+    public String toString()
+    {
+    	
+    	return " " + activity + " "+duration+ " " + predecessor ;
+    }
 
     public static void main(String[] someargs)
     {
@@ -170,11 +178,8 @@ public class Node
             }
         }
         System.out.println("|Activity|   |Duration|   |Predecessor|");
-        for(Node aNode: x)
-        {
-
-            System.out.println(" "+aNode.getActivity() + "\t  \t  "+aNode.getDuration()+" \t  "+aNode.getPredecessor());
-        }
+       
+        
 
     }
 }

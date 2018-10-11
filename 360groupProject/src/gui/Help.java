@@ -42,7 +42,7 @@ public class Help extends JFrame {
 		contentPane.setLayout(null);
 		
 		JTextPane txtpnForMoreHelp = new JTextPane();
-		txtpnForMoreHelp.setText("For more help please refer to the user's manual");
+		txtpnForMoreHelp.setText("Fist node is inputed first! \nFor more help please refer to the user's manual");
 		txtpnForMoreHelp.setBounds(57, 32, 313, 66);
 		contentPane.add(txtpnForMoreHelp);
 		
