@@ -4,12 +4,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import java.util.*;
 
 import node.Node;
 
@@ -102,10 +101,33 @@ public class GUI_360 {
 		
 		
 		
+		
 		JButton btnSave = new JButton("Save");	
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 	//		save button action
 			{
+			//Node node1 = new Node(activityNameText.getText(), Integer.parseInt(durationText.getText()), dependenciesText.getText());
+				
+				for(int i = 0; i < size_x -1; i++)
+				{
+					if(activity.equals(x.get(i).getActivity() ) ) //	not good try again
+					{
+						lblErrorPleaseReenter.setVisible(true);	// 	show error 
+						return;
+					}
+					if(dependencies.compareTo(x.get(i).getActivity())  != 0 )
+					{
+						lblErrorPleaseReenter.setVisible(true);	// 	show error 
+						return;
+					}
+					if(dependencies.equals(activity) )
+					{
+						lblErrorPleaseReenter.setVisible(true);	// 	show error 
+						return;
+					}
+					
+				}
+				
 				int duration1 =-1;
 				String duration = durationText.getText(); // 	need this
 				try
@@ -119,32 +141,48 @@ public class GUI_360 {
 					return;
 				}
 				
-				for(int i =0; i < size_x; i++)
-				{
-					if(activity.equals(x.get(i).getActivity() ) ) //	not good try again
-					{
-						lblErrorPleaseReenter.setVisible(true);	// 	show error 
-						return;
-					}
-					if(dependencies.compareTo(x.get(i).getActivity())  != 0 )
-					{
-						lblErrorPleaseReenter.setVisible(true);	// 	show error 
-						return;
-					}
-					if(dependencies.compareTo(activity) == 0)
-					{
-						lblErrorPleaseReenter.setVisible(true);	// 	show error 
-						return;
-					}
-					
-				}
+				Node node1 = new Node(activityNameText.getText(), Integer.parseInt(durationText.getText()), 
+						dependenciesText.getText());
+				x.add(node1);
 				
-				input.setActivity(activity);
+				Node temp1 = new Node(activityNameText.getText(), Integer.parseInt(durationText.getText()),
+						dependenciesText.getText());
+				Node temp2 = new Node(activityNameText.getText(), Integer.parseInt(durationText.getText()),
+						dependenciesText.getText());
+				
+				
+				for(int i = 0; i < size_x -1; i++)
+				{
+					if(x.get(i).getDuration() > x.get(i+1).getDuration())
+					{
+						
+						temp1 = x.get(i);
+						temp2 = x.get(i +1);
+						
+						x.get(i +1).setActivity(temp1.getActivity());
+						x.get(i +1).setDuration(temp1.getDuration());
+						x.get(i +1).setPredecessor(temp1.getPredecessor());
+						
+						x.get(i).setActivity(temp2.getActivity());
+						x.get(i).setDuration(temp2.getDuration());
+						x.get(i).setPredecessor(temp2.getPredecessor());
+						
+					}
+							
+						
+				}
+				/*input.setActivity(activity);
 				input.setDuration(duration1);
 				input.setPredecessor(dependencies);
-				 
-				 
-				x.add(input);
+				
+				
+					x.add(input);*/
+				
+				
+				activityNameText.setText("");
+				durationText.setText("");
+				dependenciesText.setText("");
+				
 				
 				
 			}
@@ -195,9 +233,8 @@ public class GUI_360 {
 		lblDependencies.setBounds(290, 6, 130, 16);			//	Dependencies label
 		frmMain.getContentPane().add(lblDependencies);
 		
-		JButton btnResetDiagram = new JButton("Reset Diagram");	// reset diagram
-		btnResetDiagram.setBounds(561, 34, 117, 29);
-		frmMain.getContentPane().add(btnResetDiagram);
+		
+		
 		
 		JTextArea textArea = new JTextArea();		//output box
 		textArea.setBounds(28, 150, 416, 227);
@@ -207,16 +244,29 @@ public class GUI_360 {
 		btnShowOutput.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
+				
+				textArea.setText("");
 				for(Node input: x)
 				{
 					textArea.append(input.toString() + "\n");
+					
 				}
+				
 			}
 		});
 		btnShowOutput.setBounds(471, 247, 117, 29);
 		frmMain.getContentPane().add(btnShowOutput);
 		
-		
+		JButton btnResetDiagram = new JButton("Reset Diagram");	// reset diagram
+		btnResetDiagram.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				x.removeAll(x);
+				textArea.setText("");
+			}
+		});
+		btnResetDiagram.setBounds(561, 34, 117, 29);
+		frmMain.getContentPane().add(btnResetDiagram);
 		
 		
 		JLabel lblOutput = new JLabel("Output:");

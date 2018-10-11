@@ -1,66 +1,29 @@
 package node;
-/**
- * Write a description of class Node here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Node
 {
 	
-    Scanner kb = new Scanner(System.in);
-    private String activity ="";
-    private int duration = 0;
-    private String predecessor = "";
+    
+    public String activity;
+    public int duration = 0;
+    public String predecessor;
 
-    /**
-     * Constructor for objects of class Node
-     *  The first node shouldnt have a predecessor
-     */
-    public Node(String activity, int duration)
-    {
-        System.out.println("What is the name of this activity? \n"); //Read in the users input and store it
-        activity = kb.nextLine();
-        this.activity = activity;
-        try     //Error checking, duration must be an Int
-        {
-            System.out.println("What is the duration of this activity? \n");
-            duration = kb.nextInt();
-            this.duration = duration;
-        }
-        catch (NumberFormatException a)
-        {
-            System.out.println("You must enter a number.");
-        }
-    }
+    
+   
 
     /**
      * Constructor for objects of class Node
      *  Every other node aside from the first one
      */
-    public Node(String activity, int duration, String Predecessor)
+    public Node(String activity1, int duration1, String predecessor1)
     {
-       // System.out.println("What is the name of this activity? \n");
-       // activity = kb.nextLine();
-        this.activity = activity;
-
-       // System.out.println("What is the predecessor to this activity? \n");
-       // predecessor = kb.nextLine();  
-        this.predecessor = predecessor;   
-
-       
-        try
-        {
-            //System.out.println("What is the duration of this activity? \n");
-           // duration = kb.nextInt();
-            this.duration = duration;
-        }
-        catch (NumberFormatException a)
-        {
-            System.out.println("You must enter a number.");
-        }        
+    	
+    	 this.activity = activity1;
+         this.duration = duration1;
+         this.predecessor = predecessor1; 
+    
 
     }
 
@@ -68,19 +31,19 @@ public class Node
      *  Im not really sure if we will need the setter methods but just incase.
      *  Getter methods will be used to retrieve the data.
      */
-    public void setActivity(String activity)
+    public void setActivity(String activity1)
     {
-        this.activity = activity;
+        this.activity = activity1;
     }
 
-    public void setDuration(int duration)
+    public void setDuration(int duration1)
     {
-        this.duration = duration;
+        this.duration = duration1;
     }  
 
-    public void setPredecessor(String predecessor)
+    public void setPredecessor(String predecessor1)
     {
-        this.predecessor = predecessor;
+        this.predecessor = predecessor1;
     } 
 
     public String getActivity()
@@ -101,9 +64,10 @@ public class Node
     public String toString()
     {
     	
-    	return " " + activity + " "+duration+ " " + predecessor ;
+    	return activity + " | " + duration + " | " + predecessor ;
     }
-
+}
+/*
     public static void main(String[] someargs)
     {
         Scanner kb = new Scanner(System.in);
@@ -117,7 +81,7 @@ public class Node
 
         /**
          * Asks if the user wants to create the first Node
-         */
+         
         do
         {
             System.out.println("Would you like to create a new node? y/n ");
@@ -145,7 +109,7 @@ public class Node
          * Creates first node
          * Asks if the user wants to create more nodes
          * 
-         */
+         
         if(createNew == true)
         {
             Node first = new Node("",0); //The first Node shouldnt have a predecessor            
@@ -183,3 +147,4 @@ public class Node
 
     }
 }
+*/
