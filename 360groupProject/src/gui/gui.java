@@ -135,138 +135,84 @@ public class gui {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 	//		save button action
 			{
-			//Node node1 = new Node(activityNameText.getText(), Integer.parseInt(durationText.getText()), dependenciesText.getText());
-				
-				
-				
-				
-				
-				
-				
-					
-					
-				if(dependenciesText.getText().equals(activityNameText.getText()))
-				{
-					lblErrorPleaseReenter.setVisible(true);	// 	show error 
-					activityNameText.setText("");
-					durationText.setText("");
-					dependenciesText.setText("");
-				}
-				else
-				{
-					lblErrorPleaseReenter.setVisible(false);
-				}
-				
-				
-				
-				int duration1 =-1;
-				String duration = durationText.getText(); // 	need this
-				try
-				{
-					duration1 = Integer.parseInt(duration);
-					lblErrorPleaseReenter.setVisible(false);	// hide error
-				}
-				catch(NumberFormatException a)
-				{
-					lblErrorPleaseReenter.setVisible(true);	// 	show error 
-					return;
-				}
-				
-				
-				//List<String> subarray = Arrays.asList(dependencies.split("\\s*,\\s*"));
-				Node node1 = new Node(activityNameText.getText(), Integer.parseInt(durationText.getText()), 
-						dependenciesText.getText());
-				
-				
-				
-				
-				
-				//subarray = Arrays.asList(dependenciesText.getText().split("\\s*,\\s*"));
-				
-				
-				x.add(node1);
-				
-				for(int i = 0; i < x.size() ; i++)
-				{
-					if(activityNameText.getText().equals(x.get(i).getActivity() ) ) //	not good try again
-					{
-						lblErrorPleaseReenter.setVisible(true);	// 	show error
-						activityNameText.setText("");
-						durationText.setText("");
-						dependenciesText.setText("");
-						x.remove(node1);
-						
-					}
-					else
-					{
-						lblErrorPleaseReenter.setVisible(false);
-						
-					}
-					
-					if(dependenciesText.getText().compareTo(x.get(i).getActivity())  != 0 )
-					{
-						lblErrorPleaseReenter.setVisible(true);	// 	show error 
-						activityNameText.setText("");
-						durationText.setText("");
-						dependenciesText.setText("");
-						x.remove(node1);
-						
-					}
-					else
-					{
-						lblErrorPleaseReenter.setVisible(false);	// 	show error 
-						
-					}
-					
-				}
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				/*
-				Node temp1 = new Node(activityNameText.getText(), Integer.parseInt(durationText.getText()),
-						dependenciesText.getText());
-				Node temp2 = new Node(activityNameText.getText(), Integer.parseInt(durationText.getText()),
-						dependenciesText.getText());
-				
-				
-				for(int i = 0; i < size_x -1; i++)
-				{
-					if(x.get(i).getDuration() > x.get(i+1).getDuration())
-					{
-						
-						temp1 = x.get(i);
-						temp2 = x.get(i +1);
-						
-						x.get(i +1).setActivity(temp1.getActivity());
-						x.get(i +1).setDuration(temp1.getDuration());
-						x.get(i +1).setPredecessor(temp1.getPredecessor());
-						
-						x.get(i).setActivity(temp2.getActivity());
-						x.get(i).setDuration(temp2.getDuration());
-						x.get(i).setPredecessor(temp2.getPredecessor());
-						
-					}
-							
-						
-				}
-				/*input.setActivity(activity);
-				input.setDuration(duration1);
-				input.setPredecessor(dependencies);
-				
-				
-					x.add(input);*/
-				
-				
-				activityNameText.setText("");
-				durationText.setText("");
-				dependenciesText.setText("");
-				
+				//Node node1 = new Node(activityNameText.getText(), Integer.parseInt(durationText.getText()), dependenciesText.getText());
+ 				
+ 				for(int i = 0; i < size_x -1; i++)
+ 				{
+ 					if(activity.equals(x.get(i).getActivity() ) ) //	not good try again
+ 					{
+ 						lblErrorPleaseReenter.setVisible(true);	// 	show error 
+ 						return;
+ 					}
+ 					if(dependencies.compareTo(x.get(i).getActivity())  != 0 )
+ 					{
+ 						lblErrorPleaseReenter.setVisible(true);	// 	show error 
+ 						return;
+ 					}
+ 					if(dependencies.equals(activity) )
+ 					{
+ 						lblErrorPleaseReenter.setVisible(true);	// 	show error 
+ 						return;
+ 					}
+ 					
+ 				}
+ 				
+ 				int duration1 =-1;
+ 				String duration = durationText.getText(); // 	need this
+ 				try
+ 				{
+ 					duration1 = Integer.parseInt(duration);
+ 					lblErrorPleaseReenter.setVisible(false);	// hide error
+ 				}
+ 				catch(NumberFormatException a)
+ 				{
+ 					lblErrorPleaseReenter.setVisible(true);	// 	show error 
+ 					return;
+ 				}
+ 				
+ 				Node node1 = new Node(activityNameText.getText(), Integer.parseInt(durationText.getText()), 
+ 						dependenciesText.getText());
+ 				x.add(node1);
+ 				
+ 				Node temp1 = new Node(activityNameText.getText(), Integer.parseInt(durationText.getText()),
+ 						dependenciesText.getText());
+ 				Node temp2 = new Node(activityNameText.getText(), Integer.parseInt(durationText.getText()),
+ 						dependenciesText.getText());
+ 				
+ 				
+ 				for(int i = 0; i < size_x -1; i++)
+ 				{
+ 					if(x.get(i).getDuration() > x.get(i+1).getDuration())
+ 					{
+ 						
+ 						temp1 = x.get(i);
+ 						temp2 = x.get(i +1);
+ 						
+ 						x.get(i +1).setActivity(temp1.getActivity());
+ 						x.get(i +1).setDuration(temp1.getDuration());
+ 						x.get(i +1).setPredecessor(temp1.getPredecessor());
+ 						
+ 						x.get(i).setActivity(temp2.getActivity());
+ 						x.get(i).setDuration(temp2.getDuration());
+ 						x.get(i).setPredecessor(temp2.getPredecessor());
+ 						
+ 					}
+ 							
+ 						
+ 				}
+ 				/*input.setActivity(activity);
+ 				input.setDuration(duration1);
+ 				input.setPredecessor(dependencies);
+ 				
+ 				
+ 					x.add(input);*/
+ 				
+ 				
+ 				activityNameText.setText("");
+ 				durationText.setText("");
+ 				dependenciesText.setText("");
+ 				
+ 				
 				
 				
 			}
