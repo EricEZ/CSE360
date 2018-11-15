@@ -4,14 +4,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import java.util.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import node.Node;
 
@@ -341,33 +349,94 @@ public class gui {
 		report_name.setColumns(10);
 		report_name.setBounds(6, 383, 130, 26);
 		frmMain.getContentPane().add(report_name);
+		String report = report_name.getText();
+		
+		/*public static BufferedWriter w() throws IOException{
+	         File file = new File(report);
+
+	            // if file doesnt exists, then create it
+	            if (!file.exists()) {
+	                try {
+						file.createNewFile();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	            }
+
+	            FileWriter fw = null;
+				try {
+					fw = new FileWriter(file.getAbsoluteFile());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	            BufferedWriter bw = new BufferedWriter(fw);
+
+	       
+
+	      } */ 
 		
 		JButton btnCreateReport = new JButton("Create Report");
 		btnCreateReport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				
-				PrintWriter writer;
-				try {
-					writer = new PrintWriter("sometext.txt", "UTF-8");
-					for(Node input: x)
-					{
-						writer.println(input.toString() + "\n");
+			
 						
+						PrintWriter writer;
+						try {
+							writer = new PrintWriter("test.txt", "UTF-8");
+							for(Node input: x)
+							{
+								writer.println(input.toString() + "\n");
+								
+							}
+							writer.close();
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (UnsupportedEncodingException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						
+				
+				/*
+				for (Node input : x) {
+				    try {
+
+				           // BufferedWriter bw = w();
+
+				            bw.write(input.toString());
+				            bw.close();
+
+				            System.out.println("Done");
+
+				        } catch (IOException e1) {
+				            e1.printStackTrace();
+				        }
+				}
+
+				
+				
+				
+				
+				
+				
+				
+					FileWriter writer;
+					
+					writer = new FileWriter("output.txt");
+					
+					for(Node input: x) 
+					{
+					  writer.write(input.toString());
 					}
 					writer.close();
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (UnsupportedEncodingException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-				
+					*/	
 			}
 		});
-		
 		btnCreateReport.setBounds(137, 383, 157, 29);
 		frmMain.getContentPane().add(btnCreateReport);
 		
@@ -379,6 +448,7 @@ public class gui {
 		txtNameChnage.setColumns(10);
 		txtNameChnage.setBounds(6, 295, 130, 26);
 		frmMain.getContentPane().add(txtNameChnage);
+		String new_name =  txtNameChnage.getText();
 		
 		JLabel lblNewDuration = new JLabel("New Duration:");
 		lblNewDuration.setBounds(265, 267, 106, 16);
@@ -388,10 +458,21 @@ public class gui {
 		NewDuration.setColumns(10);
 		NewDuration.setBounds(265, 295, 130, 26);
 		frmMain.getContentPane().add(NewDuration);
+		String new_dur = NewDuration.getText();
 		
 		JButton btnChangeDuration = new JButton("Change Duration");
 		btnChangeDuration.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+				ListIterator<Node> iterator = x.listIterator();
+				while (iterator.hasNext()) {
+				     Node next = iterator.next();
+				     if (next.equals(new_name)) {
+				         //Replace element
+				    	 durationText.setText("");
+				     }
+				 }
 			}
 		});
 		btnChangeDuration.setBounds(432, 295, 157, 29);
