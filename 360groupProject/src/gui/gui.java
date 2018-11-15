@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -340,6 +343,31 @@ public class gui {
 		frmMain.getContentPane().add(report_name);
 		
 		JButton btnCreateReport = new JButton("Create Report");
+		btnCreateReport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+				PrintWriter writer;
+				try {
+					writer = new PrintWriter("sometext.txt", "UTF-8");
+					for(Node input: x)
+					{
+						writer.println(input.toString() + "\n");
+						
+					}
+					writer.close();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UnsupportedEncodingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+			}
+		});
+		
 		btnCreateReport.setBounds(137, 383, 157, 29);
 		frmMain.getContentPane().add(btnCreateReport);
 		
