@@ -1,5 +1,6 @@
 package node;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Node
@@ -9,6 +10,7 @@ public class Node
     public String activity;
     public int duration = 0;
     public String predecessor;
+    public List<String> subarray;
 
     
    
@@ -22,15 +24,19 @@ public class Node
     	
     	 this.activity = activity1;
          this.duration = duration1;
-         this.predecessor = predecessor1; 
+         this.predecessor = predecessor1;
+         //List<Node> predecessor = new ArrayList<Node>();//					x is  new array
     
-
+         //subarray = Arrays.asList(predecessor.split("\\s*,\\s*")); 
     }
 
     /**
      *  Im not really sure if we will need the setter methods but just incase.
      *  Getter methods will be used to retrieve the data.
      */
+    
+
+    
     public void setActivity(String activity1)
     {
         this.activity = activity1;
@@ -44,6 +50,7 @@ public class Node
     public void setPredecessor(String predecessor1)
     {
         this.predecessor = predecessor1;
+          
     } 
 
     public String getActivity()
@@ -54,18 +61,26 @@ public class Node
     public int getDuration()
     {
         return duration;
+        
     }
 
     public String getPredecessor()
     {
         return predecessor;
+          
     }        
     
     public String toString()
     {
     	
-    	return activity + " | " + duration + " | " + predecessor ;
+    	return activity + " > " + predecessor + " = " + duration  ;
     }
+
+  //  public void splitString(String predecessor1)
+    //{
+    	//List<String> subarray = Arrays.asList(predecessor1.split("\\s*,\\s*"));
+    //}
+	
 }
 /*
     public static void main(String[] someargs)
@@ -78,7 +93,6 @@ public class Node
         List<Node> x = new ArrayList<Node>();
         boolean createNew = false;
         boolean isString = false;
-
         /**
          * Asks if the user wants to create the first Node
          
@@ -104,7 +118,6 @@ public class Node
             }
         }
         while(isString == false); 
-
         /**
          * Creates first node
          * Asks if the user wants to create more nodes
@@ -114,13 +127,11 @@ public class Node
         {
             Node first = new Node("",0); //The first Node shouldnt have a predecessor            
             x.add(first);
-
             while(rply.equals("y") || rply.equals("yes"))
             {
                 System.out.println("Would you like to create a new node? y/n ");
                 answer = kb.nextLine();
                 rply = answer.toLowerCase();
-
                 if(rply.equals("y" )|| rply.equals("yes"))
                 {
                     Node aNode = new Node("",0,"");
@@ -128,7 +139,6 @@ public class Node
                 }
                 else if( rply.equals("n") || rply.equals ("no"))
                 {
-
                 }
                 else
                 {
@@ -136,15 +146,12 @@ public class Node
                     System.out.println("Would you like to create a new node? y/n ");
                     answer = kb.nextLine();
                     rply = answer.toLowerCase();
-
                 }
-
             }
         }
         System.out.println("|Activity|   |Duration|   |Predecessor|");
        
         
-
     }
 }
 */

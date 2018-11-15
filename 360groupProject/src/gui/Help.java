@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Help extends JFrame {
+public class help extends JFrame {
 
 	private JPanel contentPane;
 
@@ -21,7 +21,7 @@ public class Help extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Help frame = new Help();
+					help frame = new help();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,18 +33,19 @@ public class Help extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Help() {
+	public help() {
+		setTitle("Help");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 731, 507);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JTextPane txtpnForMoreHelp = new JTextPane();
-		txtpnForMoreHelp.setText("Fist node is inputed first! \nFor more help please refer to the user's manual");
-		txtpnForMoreHelp.setBounds(57, 32, 313, 66);
-		contentPane.add(txtpnForMoreHelp);
+		JTextPane txtpnForMorehelp = new JTextPane();
+		txtpnForMorehelp.setText("Fist node is inputed first! \nFor more help please refer to the user's manual");
+		txtpnForMorehelp.setBounds(57, 32, 593, 174);
+		contentPane.add(txtpnForMorehelp);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
@@ -52,10 +53,10 @@ public class Help extends JFrame {
 			{
 				contentPane.setVisible(false);
 				dispose();
-				GUI_360.main(null);
+				gui.main(null);
 			}
 		});
-		btnBack.setBounds(155, 217, 117, 29);
+		btnBack.setBounds(273, 280, 117, 29);
 		contentPane.add(btnBack);
 	}
 
